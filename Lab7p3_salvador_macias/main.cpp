@@ -11,7 +11,7 @@ using namespace std;
 
 vector<RobotMecanico>lista_m;
 vector<RobotExplorador>lista_e;
-vector<Robot>lista;
+vector <RobotMecanico, RobotExplorador> lista;
 
 
 
@@ -30,129 +30,196 @@ void fabrica(){
         cin>>opc;
         switch (opc) {
             case 1:
-                {
-                    int tipo;
-                    string nombre;
-                    int bateria;
-                    int procesadores;
-                    int alcance;
-                    int cantidad_herramientas;
-                    string tipo_sensor;
-                    int potencia_herramientas;
+            {
+                int tipo;
+                string nombre;
+                int bateria;
+                int procesadores;
+                int alcance;
+                int cantidad_herramientas;
+                string tipo_sensor;
+                int potencia_herramientas;
                 
-                    
-                    
-                    cout<<"tipo(1. explorador, 2. mecanico)"<<endl;
-                    cin >>tipo;
-                    switch (tipo) {
-                        case 1:
-                            {
-                                cout<<"nombre: "<<endl;
-                                cin>>nombre;
-                                cout<<"bateria (1-10):"<<endl;
-                                cin>>bateria;
-                                cout<<"procesadores (1-10):"<<endl;
-                                cin>>procesadores;
-                                cout<<"alcance :"<<endl;
-                                cin>>alcance;
-                                cout<<"cantidad sensores :"<<endl;
-                                cin>>cantidad_herramientas;
-                                cout<<"tipo sensor :"<<endl;
-                                cin>>tipo_sensor;
-                               
-                                lista_e.push_back(RobotExplorador(nombre, bateria, procesadores, alcance));
-                               
-                                
-                                cout<<"robot explorador "<<" " <<
-                                nombre<< " creado corrcectamente"<<endl;
-
-                                
-                            }
-                            break;
-                        case 2:
-                            {
-                                cout<<"nombre: "<<endl;
-                                cin>>nombre;
-                                cout<<"bateria (1-10):"<<endl;
-                                cin>>bateria;
-                                cout<<"procesadores (1-10):"<<endl;
-                                cin>>procesadores;
-                                cout<<"potencia herramienta :"<<endl;
-                                cin>>potencia_herramientas;
-                                cout<<"cantidad herramientas :"<<endl;
-                                cin>>cantidad_herramientas;
-                                
-                                lista_m.push_back(RobotMecanico(nombre, bateria, procesadores));
-                                
-                                cout<<"robot mecanico "<<" " <<
-                                nombre<< " creado corrcectamente"<<endl;
-                            }
-                            break;
-                        default:
-                            cout<<"tipo ingresado es invalido"<<endl;
-                            break;
+                
+                
+                cout<<"tipo(1. explorador, 2. mecanico)"<<endl;
+                cin >>tipo;
+                switch (tipo) {
+                    case 1:
+                    {
+                        cout<<"nombre: "<<endl;
+                        cin>>nombre;
+                        cout<<"bateria (1-10):"<<endl;
+                        cin>>bateria;
+                        cout<<"procesadores (1-10):"<<endl;
+                        cin>>procesadores;
+                        cout<<"alcance :"<<endl;
+                        cin>>alcance;
+                        cout<<"cantidad sensores :"<<endl;
+                        cin>>cantidad_herramientas;
+                        cout<<"tipo sensor :"<<endl;
+                        cin>>tipo_sensor;
+                        
+                        lista_e.push_back(RobotExplorador(nombre, bateria, procesadores, alcance));
+                        lista.push_back(RobotExplorador(nombre, bateria, procesadores, alcance));
+                        
+                        cout<<"robot explorador "<<" " <<
+                        nombre<< " creado corrcectamente"<<endl;
+                        
+                        
                     }
-          
+                        break;
+                    case 2:
+                    {
+                        cout<<"nombre: "<<endl;
+                        cin>>nombre;
+                        cout<<"bateria (1-10):"<<endl;
+                        cin>>bateria;
+                        cout<<"procesadores (1-10):"<<endl;
+                        cin>>procesadores;
+                        cout<<"potencia herramienta :"<<endl;
+                        cin>>potencia_herramientas;
+                        cout<<"cantidad herramientas :"<<endl;
+                        cin>>cantidad_herramientas;
+                        
+                        lista_m.push_back(RobotMecanico(nombre, bateria, procesadores));
+                        lista.push_back(RobotMecanico(nombre, bateria, procesadores));
+                        
+                        cout<<"robot mecanico "<<" " <<
+                        nombre<< " creado corrcectamente"<<endl;
+                    }
+                        break;
+                    default:
+                        cout<<"tipo ingresado es invalido"<<endl;
+                        break;
                 }
+                
+            }
                 break;
             case 2:
-                {
-                    for (int i=0; i<lista_e.size(); i++) {
-                        cout<<"[explorador]"<<lista_e[i].getNombre()
-                        <<"|"<<" capacidad : "<<lista_e[i].getCapacidadTotal()<<"|"
-                        <<" |"<<" alcance: "<<lista_e[i].getAlcanceTerreno()<<"|"
-                        <<" |"<<endl;
-                        
-                        
-                        
-                        ;
-                    }
+            {
+                for (int i=0; i<lista_e.size(); i++) {
+                   /* cout<<"[explorador]"<<lista_e[i].getNombre()
+                    <<"|"<<" capacidad : "<<lista_e[i].getCapacidadTotal()<<"|"
+                    <<" |"<<" alcance: "<<lista_e[i].getAlcanceTerreno()<<"|"
+                    <<" |"<<endl;*/
+                    lista_e[i].mostrarEspecificaciones();
                     
-                    for (int i=0; i<lista_m.size(); i++) {
-                        cout<<"[mecanico]"<<lista_e[i].getNombre()
-                        <<"|"<<"capacidad: "<<lista_m[i].getCapacidadTotal()<<"|"
-                        <<" |"<<"potencia: "<<lista_e[i].getProcesadores()<<"|"
-                        <<" |"<<endl;
-                        
-                        
-                        
-                        ;
-                    }
                     
+                    
+                    ;
                 }
+                
+                for (int i=0; i<lista_m.size(); i++) {
+                   /* cout<<"[mecanico]"<<lista_m[i].getNombre()
+                    <<"|"<<"capacidad: "<<lista_m[i].getCapacidadTotal()<<"|"
+                    <<" |"<<"potencia: "<<lista_m[i].getProcesadores()<<"|"
+                    <<" |"<<endl;*/
+                    lista_e[i].Robot::mostrarEspecificaciones();
+                    
+                    
+                    ;
+                }
+                
+            }
                 break;
             case 3:
             {
-                
+                int opc_optimizar;
+                cout<<"1.optimizar mecanico 2.optimizar explorador"<<endl;
+                cin>>opc_optimizar;
+                switch (opc_optimizar) {
+                    case 1:
+                        {
+                            
+                        }
+                        break;
+                    case 2:
+                        {
+                            
+                        }
+                        break;
+                    default:
+                        cout<<"";
+                        break;
+                }
+               
             }
-            break;
+                break;
             case 4:
             {
-                for (int i=0; i<lista.size(); i++) {
-                    lista[i].getNombre();
+                int opc_lista;
+                int indice;
+                cout<<"1.lista de exploradores. 2.lista de mecanicos"<<endl;
+                cin>>opc_lista;
+                switch (opc_lista) {
+                    case 1:
+                    {
+                        cout<<"lista de exploradores "<<endl<<endl;
+                        for (int i=0; i<lista_e.size(); i++) {
+                            cout<<i<<""<<lista_e[i].getNombre();
+                        }
+                        cout<<"ingrese el indice: "<<endl;
+                        cin>>indice;
+                        if (indice<lista_e.size()) {
+                            cout<<"[explorador]"<<lista_e[indice].getNombre()
+                            <<"|"<<" capacidad : "<<lista_e[indice].getCapacidadTotal()<<"|"
+                            <<" |"<<" alcance: "<<lista_e[indice].getAlcanceTerreno()<<"|"
+                            <<" |"<<endl;
+                        }else{
+                            cout<<"indice ingresado fuera de rango"<<endl;
+                        }
+                        
+                    }
+                        break;
+                    case 2:
+                    {
+                        cout<<"lista de mecanicos "<<endl<<endl;
+                        for (int i=0; i<lista_m.size(); i++) {
+                            cout<<i<<""<<lista_m[i].getNombre();
+                        }
+                        cout<<"ingrese el indice: "<<endl;
+                        cin>>indice;
+                        if (indice<lista_m.size()) {
+                            cout<<"[mecanico]"<<lista_e[indice].getNombre()
+                            <<"|"<<"capacidad: "<<lista_m[indice].getCapacidadTotal()<<"|"
+                            <<" |"<<"potencia: "<<lista_e[indice].getProcesadores()<<"|"
+                            <<" |"<<endl;
+                        }else{
+                            cout<<"indice ingresado fuera de rango"<<endl;
+                            
+                        }
+                        
+                    }
+                        break;
+                    default:
+                        cout<<"indice ingresado es invalido"<<endl;
+                        break;
                 }
                 
+                
+            
             }
-            break;
+                break;
             case 5:
             {
                 
             }
-            break;
+                break;
             case 6:
             {
                 cout<<"abandonando el programa"<<endl;
                 salida=true;
                 
             }
-            break;
+                break;
                 
             default:
                 cout<<"opcion ingresada es invalida"<<endl;
                 break;
         }
-
-
+        
+        
         
         
         
@@ -164,7 +231,7 @@ void fabrica(){
 void menu(){
     fabrica();
 }
-    
+
 int main(int argc, const char * argv[]) {
     menu();
     return 0;
