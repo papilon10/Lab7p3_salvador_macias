@@ -3,13 +3,17 @@
 #include <iostream>
 #include <vector>
 #include "robot.h"
-//#include "robot_mecanico.h"
-//#include "robot_explorador.h"
+#include "robot_mecanico.h"
+#include "robot_explorador.h"
 
 
 using namespace std;
 
+vector<RobotMecanico>lista_m;
+vector<RobotExplorador>lista_e;
 vector<Robot>lista;
+
+
 
 void fabrica(){
     int opc;
@@ -35,6 +39,7 @@ void fabrica(){
                     int cantidad_herramientas;
                     string tipo_sensor;
                     int potencia_herramientas;
+                
                     
                     
                     cout<<"tipo(1. explorador, 2. mecanico)"<<endl;
@@ -54,6 +59,9 @@ void fabrica(){
                                 cin>>cantidad_herramientas;
                                 cout<<"tipo sensor :"<<endl;
                                 cin>>tipo_sensor;
+                               
+                                lista_e.push_back(RobotExplorador(nombre, bateria, procesadores, alcance));
+                               
                                 
                                 cout<<"robot explorador "<<" " <<
                                 nombre<< " creado corrcectamente"<<endl;
@@ -74,6 +82,8 @@ void fabrica(){
                                 cout<<"cantidad herramientas :"<<endl;
                                 cin>>cantidad_herramientas;
                                 
+                                lista_m.push_back(RobotMecanico(nombre, bateria, procesadores));
+                                
                                 cout<<"robot mecanico "<<" " <<
                                 nombre<< " creado corrcectamente"<<endl;
                             }
@@ -87,8 +97,26 @@ void fabrica(){
                 break;
             case 2:
                 {
-                    for (int i=0; i<lista.size(); i++) {
-                        cout<<i;
+                    for (int i=0; i<lista_e.size(); i++) {
+                        cout<<"[explorador]"<<lista_e[i].getNombre()
+                        <<"|"<<" capacidad : "<<lista_e[i].getCapacidadTotal()<<"|"
+                        <<" |"<<" alcance: "<<lista_e[i].getAlcanceTerreno()<<"|"
+                        <<" |"<<endl;
+                        
+                        
+                        
+                        ;
+                    }
+                    
+                    for (int i=0; i<lista_m.size(); i++) {
+                        cout<<"[mecanico]"<<lista_e[i].getNombre()
+                        <<"|"<<"capacidad: "<<lista_m[i].getCapacidadTotal()<<"|"
+                        <<" |"<<"potencia: "<<lista_e[i].getProcesadores()<<"|"
+                        <<" |"<<endl;
+                        
+                        
+                        
+                        ;
                     }
                     
                 }
@@ -100,6 +128,9 @@ void fabrica(){
             break;
             case 4:
             {
+                for (int i=0; i<lista.size(); i++) {
+                    lista[i].getNombre();
+                }
                 
             }
             break;
@@ -128,8 +159,6 @@ void fabrica(){
     } while (salida!=true);
     
 }
-
-    
 
 
 void menu(){
