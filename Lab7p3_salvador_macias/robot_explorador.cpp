@@ -39,11 +39,9 @@ int RobotExplorador::randomEnRango(int lo, int hi) {
 }
 
 void RobotExplorador::optimizar() {
-    // Alcance aumenta [0..30]
     int deltaReach = randomEnRango(0, 30);
     alcanceTerrenoKm_ = std::max(0, alcanceTerrenoKm_ + deltaReach);
 
-    // Sensibilidad de cada sensor +[5..20], clamp 100
     for (Sensor* s : sensores_) {
         if (!s) continue;
         int inc = randomEnRango(5, 20);
@@ -71,7 +69,6 @@ std::string RobotExplorador::sensorMasComun() const {
     if (sensores_.empty()) return "(sin sensores)";
     std::unordered_map<std::string, int> freq;
     for (const Sensor* s : sensores_) if (s) ++freq[s->getTipo()];
-    // elegir el de mayor frecuencia (break ties por orden de inserción no garantizado)
     std::string best; int bestCount = -1;
     for (const auto& kv : freq) {
         if (kv.second > bestCount) {
@@ -98,7 +95,6 @@ void RobotExplorador::mostrarEspecificaciones() const {
 }
 
 bool RobotExplorador::necesitaMantenimiento() const {
-    // True si al menos 2 sensores con sensibilidad < 30
     int bajos = 0;
     for (const Sensor* s : sensores_) if (s && s->getSensibilidad() < 30) ++bajos;
     return bajos >= 2;

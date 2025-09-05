@@ -20,7 +20,7 @@ public:
 
     ~RobotExplorador() override;
 
-    void agregarSensor(Sensor* s);  // toma propiedad
+    void agregarSensor(Sensor* s);  
     size_t cantidadSensores() const { return sensores_.size(); }
 
     int getAlcanceTerreno() const { return alcanceTerrenoKm_; }

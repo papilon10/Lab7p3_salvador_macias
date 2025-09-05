@@ -99,10 +99,10 @@ void fabrica(){
             case 2:
             {
                 for (int i=0; i<lista_e.size(); i++) {
-                   /* cout<<"[explorador]"<<lista_e[i].getNombre()
-                    <<"|"<<" capacidad : "<<lista_e[i].getCapacidadTotal()<<"|"
-                    <<" |"<<" alcance: "<<lista_e[i].getAlcanceTerreno()<<"|"
-                    <<" |"<<endl;*/
+                    /* cout<<"[explorador]"<<lista_e[i].getNombre()
+                     <<"|"<<" capacidad : "<<lista_e[i].getCapacidadTotal()<<"|"
+                     <<" |"<<" alcance: "<<lista_e[i].getAlcanceTerreno()<<"|"
+                     <<" |"<<endl;*/
                     lista_e[i].mostrarEspecificaciones();
                     
                     
@@ -111,10 +111,10 @@ void fabrica(){
                 }
                 
                 for (int i=0; i<lista_m.size(); i++) {
-                   /* cout<<"[mecanico]"<<lista_m[i].getNombre()
-                    <<"|"<<"capacidad: "<<lista_m[i].getCapacidadTotal()<<"|"
-                    <<" |"<<"potencia: "<<lista_m[i].getProcesadores()<<"|"
-                    <<" |"<<endl;*/
+                    /* cout<<"[mecanico]"<<lista_m[i].getNombre()
+                     <<"|"<<"capacidad: "<<lista_m[i].getCapacidadTotal()<<"|"
+                     <<" |"<<"potencia: "<<lista_m[i].getProcesadores()<<"|"
+                     <<" |"<<endl;*/
                     lista_e[i].Robot::mostrarEspecificaciones();
                     
                     
@@ -126,24 +126,39 @@ void fabrica(){
             case 3:
             {
                 int opc_optimizar;
+                int indice_optmizar;
                 cout<<"1.optimizar mecanico 2.optimizar explorador"<<endl;
                 cin>>opc_optimizar;
                 switch (opc_optimizar) {
                     case 1:
-                        {
-                            
+                    {
+                        for (int i=0; i<lista_m.size(); i++) {
+                            cout<<i<<" "<<lista_m[i].getNombre()<<endl;
+                            cout<<"ingrese el indice: ";
+                            cin>> indice_optmizar;
+                            lista_m[indice_optmizar].Robot::optimizar();
+                            cout<<"robot " << lista_m[i].getNombre()<<" optimizado"<<endl;
                         }
+                        
+                    }
                         break;
                     case 2:
-                        {
-                            
+                    {
+                        for (int i=0; i<lista_e.size(); i++) {
+                            cout<<i<<" "<<lista_e[i].getNombre()<<endl;
+                            cout<<"ingrese el indice: ";
+                            cin>> indice_optmizar;
+                            lista_e[indice_optmizar].Robot::optimizar();
+                            cout<<"robot " << lista_e[i].getNombre()<<" optimizado"<<endl;
                         }
+                        
+                    }
                         break;
                     default:
-                        cout<<"";
+                        cout<<"opcion ingresada es invalida"<<endl;
                         break;
                 }
-               
+                
             }
                 break;
             case 4:
@@ -198,11 +213,17 @@ void fabrica(){
                 }
                 
                 
-            
+                
             }
                 break;
             case 5:
             {
+                for (int i=0; i<lista_e.size(); i++) {
+                    lista_e[i].necesitaMantenimiento();
+                }
+                for (int i=0; i<lista_m.size(); i++) {
+                    lista_m[i].necesitaMantenimiento();
+                }
                 
             }
                 break;
@@ -210,6 +231,9 @@ void fabrica(){
             {
                 cout<<"abandonando el programa"<<endl;
                 salida=true;
+                delete lista;
+              //  delete lista_e;
+              //  delete lista_m;
                 
             }
                 break;
@@ -218,10 +242,6 @@ void fabrica(){
                 cout<<"opcion ingresada es invalida"<<endl;
                 break;
         }
-        
-        
-        
-        
         
     } while (salida!=true);
     
